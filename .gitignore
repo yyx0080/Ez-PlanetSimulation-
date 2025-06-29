@@ -1,0 +1,41 @@
+# 忽略 PlanetSimulation 子目录下的 Visual Studio 临时文件和编译输出
+
+# VS 文件夹
+PlanetSimulation/.vs/
+
+# 用户和本地配置文件
+PlanetSimulation/*.vcxproj.user
+PlanetSimulation/*.suo
+PlanetSimulation/*.user
+PlanetSimulation/*.VC.db
+PlanetSimulation/*.VC.opendb
+
+# 编译输出目录
+PlanetSimulation/Debug/
+PlanetSimulation/Release/
+PlanetSimulation/x64/Debug/
+PlanetSimulation/x64/Release/
+
+# 编译生成的中间产物
+PlanetSimulation/*.obj
+PlanetSimulation/*.pdb
+PlanetSimulation/*.idb
+PlanetSimulation/*.ilk
+PlanetSimulation/*.log
+PlanetSimulation/*.tlog
+
+# 通用系统垃圾文件
+PlanetSimulation/*.tmp
+PlanetSimulation/*.bak
+PlanetSimulation/*.ipch
+PlanetSimulation/.cache/
+
+# CMake：
+PlanetSimulation/CMakeFiles/
+PlanetSimulation/CMakeCache.txt
+PlanetSimulation/Makefile
+PlanetSimulation/cmake_install.cmake
+PlanetSimulation/build/
+
+# macOS 专用（如果以后用跨平台工具）
+.DS_Store
