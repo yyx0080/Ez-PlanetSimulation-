@@ -64,12 +64,35 @@ void Screen::SetBackGroundColor(float bgRed, float bgGreen, float bgBlue)
     this->bgBlue = bgBlue;
 }
 
-// 保证整个引擎的模拟在一个固定的刷新率中
+
+void Screen::updateWindowTitle()
+{
+    char title[256];
+    float fps = static_cast<float>(frameCount);
+    snprintf(title, sizeof(title), "Ez-Planet Engine - [FPS: %.0f]", fps);
+    glfwSetWindowTitle(window, title);
+}
+
+GLFWwindow* Screen::GetGLFWwindow()
+{
+    return this->window;
+}
+
+// 这里暂时不固定整个引擎的刷新率，后续出bug了再固定刷新率
 void Screen::Update()
 {
     float currentTime = static_cast<float>(glfwGetTime());
     deltaTime = currentTime - lastFrameTime;
     lastFrameTime = currentTime;
+
+    frameCount++;
+    double now = glfwGetTime();
+    if (now - lastFPSTime >= 1.0) 
+    {
+        updateWindowTitle();  // 每秒刷新一次
+        frameCount = 0;
+        lastFPSTime = now;
+    }
 
     glfwPollEvents(); // 用于处理窗口事件
 
