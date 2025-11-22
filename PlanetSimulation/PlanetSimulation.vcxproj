@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\C++Code\Ez-PlanetSimulation-\PlanetSimulation\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,17 +128,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Screen.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Input.h" />
-    <ClInclude Include="Screen.h" />
+    <ClInclude Include="include\Camera2D.h" />
+    <ClInclude Include="include\Input.h" />
+    <ClInclude Include="include\Rendered2D.h" />
+    <ClInclude Include="include\Screen.h" />
+    <ClInclude Include="include\Shader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Camera2D.cpp" />
+    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Renderer2D.cpp" />
+    <ClCompile Include="src\Screen.cpp" />
+    <ClCompile Include="src\Shader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
