@@ -2,7 +2,7 @@
 #include <iostream>
 Renderer2D::Renderer2D()
 {
-    Shader lineShader = Shader("shaders/line.vert", "shaders/line.frag");
+    lineShader = Shader("shaders/line.vert", "shaders/line.frag");
     // ----------- 初始化 VAO / VBO -----------
     glGenVertexArrays(1, &lineVAO);
     glGenBuffers(1, &lineVBO);
@@ -31,7 +31,7 @@ Renderer2D::~Renderer2D()
     glDeleteBuffers(1, &lineVBO);
 }
 
-void Renderer2D::DrawLine(const glm::vec2& a, const glm::vec2& b, const glm::vec3& color)
+void Renderer2D::DrawLine(const glm::vec2& a, const glm::vec2& b, const glm::vec3& color, const glm::mat4& view, const glm::mat4& proj)
 {
     
     float vertices[4] = {
@@ -41,6 +41,9 @@ void Renderer2D::DrawLine(const glm::vec2& a, const glm::vec2& b, const glm::vec
 
     lineShader.Use();
     lineShader.SetUniform("uColor", color);
+    lineShader.SetUniform("uView", view);
+    lineShader.SetUniform("uProjection", proj);
+
 
     glBindVertexArray(lineVAO);
 
@@ -50,10 +53,10 @@ void Renderer2D::DrawLine(const glm::vec2& a, const glm::vec2& b, const glm::vec
     glDrawArrays(GL_LINES, 0, 2);
 }
 
-void Renderer2D::DrawCoordinateAxis(float axisLength)
+void Renderer2D::DrawCoordinateAxis(float axisLength, const glm::mat4& view, const glm::mat4& proj)
 {
     const glm::vec3 axisColor = { 1.0f, 1.0f, 1.0f }; // 白色
-    const glm::vec3 tickColor = { 0.8f, 0.8f, 0.8f }; // 灰色
+    const glm::vec3 tickColor = { 0.6f, 0.6f, 0.6f }; // 灰色
 
     float half = axisLength;
 
@@ -63,7 +66,9 @@ void Renderer2D::DrawCoordinateAxis(float axisLength)
     DrawLine(
         glm::vec2(-half, 0),
         glm::vec2(half, 0),
-        axisColor
+        axisColor,
+        view,
+        proj
     );
 
     // 绘制 X 轴刻度
@@ -72,7 +77,9 @@ void Renderer2D::DrawCoordinateAxis(float axisLength)
         DrawLine(
             glm::vec2(x, -tickSize),
             glm::vec2(x, tickSize),
-            tickColor
+            tickColor,
+            view,
+            proj
         );
     }
 
@@ -82,7 +89,9 @@ void Renderer2D::DrawCoordinateAxis(float axisLength)
     DrawLine(
         glm::vec2(0, -half),
         glm::vec2(0, half),
-        axisColor
+        axisColor,
+        view,
+        proj
     );
 
     // 绘制 Y 轴刻度
@@ -91,7 +100,9 @@ void Renderer2D::DrawCoordinateAxis(float axisLength)
         DrawLine(
             glm::vec2(-tickSize, y),
             glm::vec2(tickSize, y),
-            tickColor
+            tickColor,
+            view,
+            proj
         );
     }
 }

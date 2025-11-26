@@ -18,7 +18,8 @@ int main()
 
         camera.Update();
 
-        renderer.DrawCoordinateAxis(20.0f);
+        renderer.DrawCoordinateAxis(screen.GetWidth(),camera.GetViewMatrix(), camera.GetProjectionMatrix());
+        
 
         float t = glfwGetTime();  // 用时间演示动态变化
         float x = 0.5f * std::cos(t);
